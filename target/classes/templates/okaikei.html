@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+		integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+	<link rel="stylesheet" href="style.css">
+
+	<title>店内注文App | お会計</title>
+</head>
+
+<body>
+	<div class="col-5 m-auto p-2 text-center">
+		<h2 class="mb-3">お会計<i class="bi bi-cart3"></i></h2>
+
+		<div class="mb-3">
+			<h3>
+				合計：
+				<span th:text="${total}">円</span>
+			</h3>
+		</div>
+
+		<div class="mb-3 d-flex gap-2">
+			<input class="form-control text-center" type="number" id="wariKan" th:value="${total / totalPeople}" readonly>
+			<input class="form-control text-center" id="totP" type="number" th:value="${totalPeople}" min="1" 
+			th:oninput="myFun([[${total}]])">
+		</div>
+
+		<div class="mb-3">
+			<a href="okaikeiKettei" class="btn btn-success form-control">お会計を終了する</a>
+		</div>
+	</div>
+	
+	<script>
+		function myFun(x){
+			console.log(document.getElementById("totP").value);
+			console.log(x);
+			
+			let y = document.getElementById("totP").value;
+			let z = x/y;
+			document.getElementById("wariKan").value = z;
+			
+
+		};
+		
+	</script>
+	
+</body>
+
+</html>
